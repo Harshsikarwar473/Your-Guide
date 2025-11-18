@@ -24,7 +24,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET , "/api/jobs/**").permitAll()
                         .requestMatchers(HttpMethod.GET , "/api/jobs/my-job").hasAuthority("EMPLOYER")
                         .requestMatchers(HttpMethod.POST , "/api/jobs/**").hasAuthority("EMPLOYER")
-                        .requestMatchers(HttpMethod.POST,"/api/application").hasAuthority("JOB_SEEKER")
+                        .requestMatchers(HttpMethod.POST,"/api/application/**").hasAuthority("JOB_SEEKER")
+                        .requestMatchers(HttpMethod.GET , "/api/application/my/**").hasAuthority("JOB_SEEKER")
+
                 .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
