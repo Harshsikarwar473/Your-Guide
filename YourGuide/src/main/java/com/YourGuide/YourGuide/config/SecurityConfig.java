@@ -1,6 +1,7 @@
 package com.YourGuide.YourGuide.config;
 
 import com.YourGuide.YourGuide.security.JwtAuthenticationFilter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +27,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST , "/api/jobs/**").hasAuthority("EMPLOYER")
                         .requestMatchers(HttpMethod.POST,"/api/application/**").hasAuthority("JOB_SEEKER")
                         .requestMatchers(HttpMethod.GET , "/api/application/my/**").hasAuthority("JOB_SEEKER")
+                        .requestMatchers(HttpMethod.POST,"/api/resume/**").hasAuthority("JOB_SEEKER")
 
                 .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
