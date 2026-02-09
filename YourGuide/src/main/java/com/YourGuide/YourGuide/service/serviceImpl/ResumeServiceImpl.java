@@ -41,6 +41,7 @@ public class ResumeServiceImpl implements ResumeService {
             resume.setFileName(file.getOriginalFilename());
             resume.setExtractedText(text);
         }
+        resumeRepo.save(resume);
 
         return "resume Uploaded Successfully";
     }

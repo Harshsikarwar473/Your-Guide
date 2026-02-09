@@ -28,8 +28,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/api/application/**").hasAuthority("JOB_SEEKER")
                         .requestMatchers(HttpMethod.GET , "/api/application/my/**").hasAuthority("JOB_SEEKER")
                         .requestMatchers(HttpMethod.POST,"/api/resume/**").hasAuthority("JOB_SEEKER")
+                        .requestMatchers(HttpMethod.POST, "/api/ats/**").hasAuthority("JOB_SEEKER")
+                        .requestMatchers("/error").permitAll()
 
-                .anyRequest().authenticated())
+
+                        .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
